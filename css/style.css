@@ -55,14 +55,6 @@ td:not([align]), th:not([align]) {
   margin: auto;
 }
 
-.card {
-  height: 250px;
-  width: 400px;
-  border: solid 1px gray;
-  border-radius: 5px;
-  margin: 20px;
-}
-
 .header {
   display: flex;
   flex-direction: row;
