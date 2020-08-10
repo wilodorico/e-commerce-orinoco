@@ -10,7 +10,7 @@ request.onreadystatechange = function() {
             `<div class="card mb-3" style="max-width: 768px;">
             <div class="row no-gutters">
               <div class="col-md-6">
-                <img src="${item.imageUrl}" class="card-img" alt="${item.name}">
+                <img id="image" src="${item.imageUrl}" class="card-img" alt="${item.name}">
               </div>
               <div class="col-md-6">
                 <div class="card-body">
@@ -19,8 +19,8 @@ request.onreadystatechange = function() {
                   <label for="vernis">Selectionne le Vernis</label>
                     <select id="vernis" class="form-control form-control-sm"></select>
                   <div class="d-flex justify-content-between align-items-center mt-3">
-                    <small class="text-muted">${prix.toFixed(2)} €</small>
-                    <button id="ajout-panier" data-id="${item._id}" type="button" class="btn btn-sm btn-secondary">Ajouter au panier</button>
+                    <small id="prix" class="text-muted">${prix.toFixed(2)} €</small>
+                    <button id="ajout-panier" data-name="${item.name}" type="button" class="btn btn-sm btn-secondary">Ajouter au panier</button>
                   </div>
                 </div>
               </div>
@@ -44,40 +44,35 @@ const urlParam = new URLSearchParams(window.location.search);
 //console.log(urlParam.get('id'));
 request.open("GET", "http://localhost:3000/api/furniture/" + urlParam.get('id'));
 request.send();
-const panier = document.getElementById('panier');
 
 function stockPanier(e){
-    const selectVernis = document.getElementById('vernis');
-    // selectVernis.value;
-    // let nombreProduit = localStorage.getItem('produits');
-    // nombreProduit = parseInt(nombreProduit);
-    // localStorage.setItem('produits', 1);
-    let keyPanier = e.target.dataset.id + '-' + selectVernis.value;
-    let valeurPanier = localStorage.getItem(keyPanier);
-    console.log(valeurPanier);
-    if (valeurPanier === null) {
-        valeurPanier = document.getElementById('panier').textContent = 1;
-    } else {
-        valeurPanier = parseInt(valeurPanier) + 1;
-        document.getElementById('panier').textContent = valeurPanier;
-    }
-    localStorage.setItem(keyPanier, valeurPanier);
-    console.log(e.target.dataset.id);
-    console.log(selectVernis.value);
+  const panier = document.getElementById('panier');
+  const selectVernis = document.getElementById('vernis');
+  const image = document.getElementById('image');
+  const prix = document.getElementById('prix');
+  console.log(prix.textContent)
+  let keyPanier = e.target.dataset.name + '-' + selectVernis.value + '-' + image.currentSrc + '-' + prix.textContent;
+  let valeurPanier = localStorage.getItem(keyPanier);
+  //console.log(valeurPanier);
+  if (valeurPanier === null) {
+      valeurPanier = 1;
+      console.log(valeurPanier);
+  } else {
+      valeurPanier = parseInt(valeurPanier) + 1;
+      console.log(valeurPanier);
+  }
+  localStorage.setItem(keyPanier, valeurPanier);
+  // console.log("*********",e.target.dataset.id);
+  // console.log("*********",selectVernis.value);
+  console.log('---------------');
 
-    console.log('---------------');
+  // for (let key in localStorage) {
+  //   if(!localStorage.hasOwnProperty(key))
+  //   continue
+  //   let cardPanier = key.split('-');
+  //   console.log(key, localStorage.getItem(key));
+  //   console.log("ici-------", cardPanier)
+  //   }
+};
 
-    for (let key in localStorage) {
-      if(!localStorage.hasOwnProperty(key))
-      continue
-      console.log(key, localStorage.getItem(key));
-      console.log(key.split('-'));
-        // if (localStorage.getItem(key)) {
-        //     console.log(key);
-        //     console.log(localStorage.getItem(key));
-        //     console.log(key.split('-'));
-        //     console.log('_');
-        // }
-    }
-}
-//document.getElementById('vernis').value; recupérer le vernis selectionné pour panier
+
