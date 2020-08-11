@@ -7,8 +7,8 @@ request.onreadystatechange = function() {
         //console.log(item.name);
         let prix = item.price / 100;
         let card =
-            `<div class="card mb-3" style="max-width: 768px;">
-            <div class="row no-gutters">
+            `<div class="card mb-3" style="max-width: 1024px;">
+            <div class="row">
               <div class="col-md-6">
                 <img id="image" src="${item.imageUrl}" class="card-img" alt="${item.name}">
               </div>
@@ -41,12 +41,11 @@ request.onreadystatechange = function() {
     }
 };
 const urlParam = new URLSearchParams(window.location.search);
-//console.log(urlParam.get('id'));
 request.open("GET", "http://localhost:3000/api/furniture/" + urlParam.get('id'));
 request.send();
 
 function stockPanier(e){
-  const panier = document.getElementById('panier');
+  //const panier = document.getElementById('panier');
   const selectVernis = document.getElementById('vernis');
   const image = document.getElementById('image');
   const prix = document.getElementById('prix');
