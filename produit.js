@@ -1,7 +1,9 @@
 let request = new XMLHttpRequest();
+let produit = 0;
 request.onreadystatechange = function() {
     if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
         let item = JSON.parse(this.responseText);
+        produit = item;
         const main = document.getElementById('main');
         //console.log(response);
         //console.log(item.name);
@@ -20,7 +22,7 @@ request.onreadystatechange = function() {
                     <select id="vernis" class="form-control form-control-sm"></select>
                   <div class="d-flex justify-content-between align-items-center mt-3">
                     <small id="prix" class="text-muted">${prix.toFixed(2)} €</small>
-                    <button id="ajout-panier" data-name="${item.name}" type="button" class="btn btn-sm btn-secondary">Ajouter au panier</button>
+                    <button id="ajout-panier" type="button" class="btn btn-sm btn-secondary">Ajouter au panier</button>
                   </div>
                 </div>
               </div>
@@ -34,7 +36,7 @@ request.onreadystatechange = function() {
         }
         //console.log(item);
         const btnAjoutPanier = document.getElementById('ajout-panier');
-        btnAjoutPanier.addEventListener('click', function(e){
+        btnAjoutPanier.addEventListener('click', function(e) {
             stockPanier(e);
             //console.log("ajout au panier");
         });
@@ -44,34 +46,27 @@ const urlParam = new URLSearchParams(window.location.search);
 request.open("GET", "http://localhost:3000/api/furniture/" + urlParam.get('id'));
 request.send();
 
-function stockPanier(e){
-  //const panier = document.getElementById('panier');
-  const selectVernis = document.getElementById('vernis');
-  const image = document.getElementById('image');
-  const prix = document.getElementById('prix');
-  console.log(prix.textContent)
-  let keyPanier = e.target.dataset.name + '-' + selectVernis.value + '-' + image.currentSrc + '-' + prix.textContent;
-  let valeurPanier = localStorage.getItem(keyPanier);
-  //console.log(valeurPanier);
-  if (valeurPanier === null) {
-      valeurPanier = 1;
-      console.log(valeurPanier);
-  } else {
-      valeurPanier = parseInt(valeurPanier) + 1;
-      console.log(valeurPanier);
-  }
-  localStorage.setItem(keyPanier, valeurPanier);
-  // console.log("*********",e.target.dataset.id);
-  // console.log("*********",selectVernis.value);
-  console.log('---------------');
+function stockPanier(e) {
+    //const panier = document.getElementById('panier');
+    const selectVernis = document.getElementById('vernis');
+    const prix = document.getElementById('prix');
+    console.log(prix.textContent)
 
-  // for (let key in localStorage) {
-  //   if(!localStorage.hasOwnProperty(key))
-  //   continue
-  //   let cardPanier = key.split('-');
-  //   console.log(key, localStorage.getItem(key));
-  //   console.log("ici-------", cardPanier)
-  //   }
+    let panier = getPanier(); // decodage du json du local storage via panierHelper
+    let allreadyInBasket = false;
+
+    // on cherche dans notre panier si un élément similaire existe déja
+    for (panierItem of panier) {
+        console.log(panierItem);
+        if (panierItem.id == produit._id && panierItem.vernis == selectVernis.value) { // similaire si même id et même vernis
+            panierItem.count += 1;
+            allreadyInBasket = true;
+            break;
+        }
+    }
+
+    if (!allreadyInBasket)
+        panier.push({ id: produit._id, name: produit.name, img: produit.imageUrl, prix: produit.price, vernis: selectVernis.value, count: 1 });
+
+    savePanier(panier); // sauvgarde du json dans le local storage via panierHelper
 };
-
-

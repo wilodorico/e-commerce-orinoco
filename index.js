@@ -26,7 +26,7 @@ request.onreadystatechange = function() {
             </div>
           </div>`;
             main.innerHTML += card;
-            //console.log(item);
+            //console.log(item.name);
         }
     }
 };
