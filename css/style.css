@@ -5,8 +5,12 @@
 }
 
 .titre-element {
-  border-bottom: 2px solid black;
+  border-bottom: 1px solid black;
   margin-bottom: 15px;
+}
+
+.sous-total {
+  font-size: 1.2rem;
 }
 
 .header {
@@ -27,8 +31,24 @@
   margin-bottom: 5px;
   width: 100px;
 }
+.header_panier a {
+  color: black;
+  text-decoration: none;
+}
 .header .fa-shopping-cart {
-  font-size: 20px;
+  font-size: 30px;
+}
+.header_panier-count {
+  display: inline-flex;
+  position: relative;
+  justify-content: center;
+  top: -20px;
+  left: -18px;
+  width: 23px;
+  background-color: gray;
+  border-radius: 50%;
+  color: white;
+  font-size: 1.2rem;
 }
 
 .footer {

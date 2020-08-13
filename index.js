@@ -33,7 +33,4 @@ request.onreadystatechange = function() {
 request.open("GET", "http://localhost:3000/api/furniture");
 request.send();
 
-
-
-
-
+showTotalInPanier();

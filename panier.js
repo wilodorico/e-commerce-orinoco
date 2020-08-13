@@ -3,19 +3,18 @@ let prixTotalPanier = 0;
 displayPanier();
 
 function displayPanier() {
-
     prixTotalPanier = 0;
-    contenuePanier.innerHTML = `        <div class="row titre-element">
-    <h5 class="col-4 mr-4 text-center">Produit</h5>
-    <h5 class="col-2 text-center">Vernis</h5>
-    <h5 class="col-1">Prix</h5>
-    <h5 class="col-2">Quantité</h5>
-    <h5 class="col-1">Total</h5>
-</div>`;
+    contenuePanier.innerHTML = 
+    `<div class="row titre-element">
+        <h5 class="col-4 mr-4 text-center">Produit</h5>
+        <h5 class="col-2 text-center">Vernis</h5>
+        <h5 class="col-1">Prix</h5>
+        <h5 class="col-2">Quantité</h5>
+        <h5 class="col-1">Total</h5>
+    </div>`;
 
     let panier = getPanier();
     for (let panierItem of panier) {
-
         let prix = panierItem.prix / 100;
         let prixTotalArticle = prix * panierItem.count;
         prixTotalPanier += prixTotalArticle;
@@ -39,7 +38,7 @@ function displayPanier() {
                     </div>
                     <div class="col-md-2 ml-1">
                         <p class="card-text prix-total">${prixTotalArticle} €</p>
-                        <button onclick="removeItem(event.currentTarget)" data-test="eeed" data-id="eee" type="button" class="close" aria-label="Close">
+                        <button onclick="removeItem(event.currentTarget)" data-id="${panierItem.id}" data-vernis="${panierItem.vernis}" type="button" class="close" aria-label="Close">
                             <i class="fas fa-trash-alt"></i>
                         </button>
                     </div>
@@ -48,29 +47,42 @@ function displayPanier() {
               </div>`;
 
         contenuePanier.innerHTML += articlePanier;
+        
     };
-
     checkPanierVide();
     displayPrixTotal();
+    showTotalInPanier()
 }
-
-
 
 function removeItem(e) {
-    console.log(e.dataset);
-}
+    let panier = getPanier();
+    let itemId = e.dataset.id;
+    let itemVernis = e.dataset.vernis
+    let itemFilter = panier.filter(function(item) {
+        if(item.id != itemId || item.vernis != itemVernis){
+            return true;
+        }  
+    });
+    savePanier(itemFilter);
+    displayPanier();
+};
 
 function displayPrixTotal() {
+    const sousTotalPrix = document.querySelector('.total-prix');
+    sousTotalPrix.textContent = prixTotalPanier + "€";
+    console.log(prixTotalPanier); 
+};
 
-    console.log(prixTotalPanier);
-}
 
 function checkPanierVide() {
-    if (localStorage.length === 0) {
+    if (prixTotalPanier === 0) {
         let message =
             `<div class="text-center">
             <h2>Votre panier est vide</h2>
         </div>`;
         contenuePanier.innerHTML = message;
+        localStorage.removeItem('panier');
     }
 };
+    //console.log(item.id, item.vernis)
+    

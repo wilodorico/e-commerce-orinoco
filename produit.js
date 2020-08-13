@@ -38,35 +38,29 @@ request.onreadystatechange = function() {
         const btnAjoutPanier = document.getElementById('ajout-panier');
         btnAjoutPanier.addEventListener('click', function(e) {
             stockPanier(e);
+            showTotalInPanier();
             //console.log("ajout au panier");
         });
-    }
+    } 
 };
 const urlParam = new URLSearchParams(window.location.search);
 request.open("GET", "http://localhost:3000/api/furniture/" + urlParam.get('id'));
 request.send();
-
-function stockPanier(e) {
-    //const panier = document.getElementById('panier');
+function stockPanier() {
     const selectVernis = document.getElementById('vernis');
-    const prix = document.getElementById('prix');
-    console.log(prix.textContent)
-
     let panier = getPanier(); // decodage du json du local storage via panierHelper
     let allreadyInBasket = false;
-
     // on cherche dans notre panier si un élément similaire existe déja
     for (panierItem of panier) {
-        console.log(panierItem);
         if (panierItem.id == produit._id && panierItem.vernis == selectVernis.value) { // similaire si même id et même vernis
             panierItem.count += 1;
             allreadyInBasket = true;
             break;
         }
+    };
+    if (!allreadyInBasket) {
+      panier.push({ id: produit._id, name: produit.name, img: produit.imageUrl, prix: produit.price, vernis: selectVernis.value, count: 1 });
     }
-
-    if (!allreadyInBasket)
-        panier.push({ id: produit._id, name: produit.name, img: produit.imageUrl, prix: produit.price, vernis: selectVernis.value, count: 1 });
-
     savePanier(panier); // sauvgarde du json dans le local storage via panierHelper
 };
+showTotalInPanier();
