@@ -18,17 +18,30 @@
         </a>
     </header>
     <main class="container">
-        <section id="stock-panier" >
-            <div class="row titre-element">
-                <h4 class="col-4 font-weight-bold">Votre panier</h4>
+        <div class="row">
+            <div class="col-8">
+                <section id="stock-panier" >
+                    <div class="row titre-element">
+                        <h4 class="col font-weight-bold">Votre panier</h4>
+                    </div>
+                </section>
+                <!-- <section id="stock-panier" class="sous-total text-right">
+                    <div class="text-right">
+                        <span>Sous-total (<span id="panier">0</span> articles):</span>
+                        <span class="total-prix font-weight-bold"></span>
+                    </div>
+                </section> -->
             </div>
-        </section>
-        <section id="stock-panier" class="sous-total text-right">
-            <div class="text-right">
-                <span>Sous-total (<span id="panier">0</span> articles):</span>
-                <span class="total-prix font-weight-bold"></span>
+            <div class="col-4">
+                <div id="stock-panier" class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">Sous-total (<span id="panier">0</span> articles) : <span class="total-prix font-weight-bold"></span></h5>
+                    </div>
+                    <a href="#" class="btn btn-warning font-weight-bold">Commander</a>
+                  </div>
             </div>
-        </section>
+        </div>
+        
     </main>
     
 

@@ -15,34 +15,27 @@ function displayPanier() {
         let prixTotalArticle = prix * panierItem.count;
         prixTotalPanier += prixTotalArticle;
         let articlePanier =
-            `<div class="border-bottom mb-4">
-                <div class="row">
-                  <div class="col-md-2">
-                        <img id="image" src="${panierItem.img}" class="card-img mb-3" alt="photo ${panierItem.name}">
-                  </div>
-                  <div class="col-md-2 ml-3">
+            `<div class="row border-bottom mb-4">
+                    <div class="col-md-3">
+                            <img id="image" src="${panierItem.img}" class="card-img mb-3" alt="photo ${panierItem.name}">
+                    </div>
+                    <div class="col-md-3">
                         <h5 class="card-title">${panierItem.name}</h5>
-                    </div>
-                    <div class="col-md-2 ml-1 text-center">
                         <p class="card-text">${panierItem.vernis}</p>
-                    </div>
-                    <div class="col-md-1 ml-1">
                         <p class="card-text">${prix.toFixed(2)}€</p>
                     </div>
                     <div class="d-flex flex-row">
-                        <button onclick="pushOneItem(event.currentTarget)" data-id="${panierItem.id}" data-vernis="${panierItem.vernis}" type="button" class="close" aria-label="ajoute"><i class="fas fa-plus-circle"></i></button>
+                        <span onclick="pushOneItem(event.currentTarget)" data-id="${panierItem.id}" data-vernis="${panierItem.vernis}" aria-label="ajoute"><i class="fas fa-plus-circle"></i></span>
                         <p class="card-text">${panierItem.count}</p>
-                        <button onclick="removeOneItem(event.currentTarget)" data-id="${panierItem.id}" data-vernis="${panierItem.vernis}" type="button" class="close" aria-label="diminu"><i class="fas fa-minus-circle"></i></button>
+                        <span onclick="removeOneItem(event.currentTarget)" data-id="${panierItem.id}" data-vernis="${panierItem.vernis}" aria-label="diminu"><i class="fas fa-minus-circle"></i></span>
                     </div>
-                    <div class="col-md-2 ml-1">
+                    <div class="col-md-2">
                         <p class="card-text prix-total">${prixTotalArticle} €</p>
                         <button onclick="removeItem(event.currentTarget)" data-id="${panierItem.id}" data-vernis="${panierItem.vernis}" type="button" class="close" aria-label="Close">
                             <i class="fas fa-trash-alt"></i>
                         </button>
                     </div>
-                  </div>
-                </div>
-              </div>`;
+                </div>`;
         contenuePanier.innerHTML += articlePanier;  
     };
     checkPanierVide();
