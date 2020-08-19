@@ -4,7 +4,7 @@ request.onreadystatechange = function() {
     if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
         let response = JSON.parse(this.responseText);
         const main = document.getElementById('main');
-        //console.log(response);
+        console.log(response);
         
 // Boucle récupération des données produits
         for (const item of response) {

@@ -4,8 +4,8 @@ displayPanier();
 
 function displayPanier() {
     prixTotalPanier = 0;
-    contenuePanier.innerHTML = 
-    `<div class="border-bottom mb-4">
+    contenuePanier.innerHTML =
+        `<div class="border-bottom mb-4">
         <h4 class="col-4 font-weight-bold">Votre panier</h4>
     </div>`;
 
@@ -36,7 +36,7 @@ function displayPanier() {
                         </button>
                     </div>
                 </div>`;
-        contenuePanier.innerHTML += articlePanier;  
+        contenuePanier.innerHTML += articlePanier;
     };
     checkPanierVide();
     displayPrixTotal();
@@ -48,20 +48,21 @@ function removeItem(e) {
     let itemId = e.dataset.id;
     let itemVernis = e.dataset.vernis
     let itemFilter = panier.filter(function(item) {
-        if(item.id != itemId || item.vernis != itemVernis){
+        if (item.id != itemId || item.vernis != itemVernis) {
             return true;
-        }  
+        }
     });
     savePanier(itemFilter);
     displayPanier();
 };
 
 function displayPrixTotal() {
-    const sousTotalPrix = document.querySelector('.total-prix');
+    const sousTotalPrix = document.querySelector('.prix');
+    const totalPrix = document.querySelector('.total-prix');
     sousTotalPrix.textContent = prixTotalPanier + "€";
-    console.log(prixTotalPanier); 
+    totalPrix.textContent = prixTotalPanier + "€";
+    console.log(prixTotalPanier);
 };
-
 
 function checkPanierVide() {
     if (prixTotalPanier === 0) {
@@ -70,36 +71,76 @@ function checkPanierVide() {
             <h2>Votre panier est vide</h2>
         </div>`;
         contenuePanier.innerHTML = message;
+        document.getElementById('total-form').remove()
         localStorage.removeItem('panier');
     }
 };
 
 function pushOneItem(e) {
+    addOrRemoveOneItem(e, true);
+};
+
+function removeOneItem(e) {
+    addOrRemoveOneItem(e, false);
+};
+
+function addOrRemoveOneItem(e, add) {
     let panier = getPanier(); // decodage du json du local storage via panierHelper
     let itemId = e.dataset.id;
     let itemVernis = e.dataset.vernis;
     // on cherche dans notre panier si un élément similaire existe déja
     for (panierItem of panier) {
         if (panierItem.id == itemId && panierItem.vernis == itemVernis) { // similaire si même id et même vernis
-            panierItem.count += 1;
+            if (add) {
+                panierItem.count++;
+            } else if (panierItem.count > 1) {
+                panierItem.count--;
+            }
         }
     };
     savePanier(panier); // sauvgarde du json dans le local storage via panierHelper
     displayPanier();
 };
 
-function removeOneItem(e) {
-    let panier = getPanier(); // decodage du json du local storage via panierHelper
-    let itemId = e.dataset.id;
-    let itemVernis = e.dataset.vernis;
-    // on cherche dans notre panier si un élément similaire existe déja
-    for (panierItem of panier) {
-        if (panierItem.count > 1 && panierItem.id == itemId && panierItem.vernis == itemVernis) { // similaire si même id et même vernis
-            panierItem.count--;
+// Affichage du formulaire au click sur le btn Command
+const formCommand = document.getElementById('form');
+const btnCommand = document.getElementById('command');
+btnCommand.addEventListener('click', function() {
+    formCommand.classList.remove("d-none");
+    btnCommand.classList.add("d-none");
+});
+console.log(document.forms)
+
+// Gestion validation du formulaire
+const email = document.getElementById('email');
+
+const validCommand = document.getElementById('valid-command');
+
+validCommand.addEventListener('click', submitOrder);
+
+function submitOrder(e) {
+    e.preventDefault();
+    var xmlhttp = new XMLHttpRequest(); // new HttpRequest instance
+    xmlhttp.open("POST", "http://localhost:3000/api/furniture/order");
+    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == XMLHttpRequest.DONE && this.status == 201) {
+            let resp = JSON.parse(this.responseText);
+            console.log(resp);
         }
     };
-    savePanier(panier); // sauvgarde du json dans le local storage via panierHelper
-    displayPanier();
+    xmlhttp.send(JSON.stringify({
+        contact: {
+            firstName: "Odorico",
+            lastName: "will",
+            address: " 3 rue des lampions",
+            city: "nerac",
+            email: "toto@gmail.com"
+        },
+        products: [
+            "5beaae361c9d440000a57d99",
+            "5beaadda1c9d440000a57d98"
+
+        ]
+    }));
 };
-    
-   
