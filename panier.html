@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +9,6 @@
     <title>Panier Orinoco-Meuble Chêne</title>
 
 </head>
-
 <body>
     <header class="header">
         <a href="index.html" class="header_logo">
@@ -25,12 +23,6 @@
                         <h4 class="col-4 font-weight-bold">Votre panier</h4>
                     </div>
                 </section>
-                <!-- <section id="stock-panier" class="sous-total text-right">
-                    <div class="text-right">
-                        <span>Sous-total (<span id="panier">0</span> articles):</span>
-                        <span class="total-prix font-weight-bold"></span>
-                    </div>
-                </section> -->
             </div>
             <div id="total-form" class="col-4">
                 <div class="card">
@@ -40,25 +32,30 @@
                         <p class="h6">Total(TVA incluse) : <span class="total-prix font-weight-bold"></span></p>
                     </div>
                     <div id="form" class="d-none">
-                        <form name="form-command" class="col">
+                        <form id="form-command" name="form-command" class="col">
                             <div class="form-group">
                                 <label for="last-name">Nom</label>
-                                <input type="text" class="form-control" name="last-name" required>
-
+                                <input type="text" class="form-control" name="lastName" required>
+                            </div>
+                            <div class="form-group">
                                 <label for="first-name">Prénom</label>
-                                <input type="text" class="form-control" name="first-name" required>
-
+                                <input type="text" class="form-control" name="firstName" required>
+                            </div>
+                            <div class="form-group">
                                 <label for="adresse">Adresse</label>
-                                <input type="text" class="form-control" name="adresse" required>
-
+                                <input type="text" class="form-control" name="address" required>
+                            </div>
+                            <div class="form-group">
                                 <label for="city">Ville</label>
                                 <input type="text" class="form-control" name="city" required>
-
+                            </div>
+                            <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="email" class="form-control" name="email" id="email" required>
                             </div>
-                            <button id="valid-command" class="btn btn-primary">Valider la commande</button>
-
+                            <div class="form-group">
+                                <button id="btn-valid-command" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalConfirm">Valider la commande</button>
+                            </div>
                         </form>
                     </div>
                     <button id="command" class="btn btn-warning font-weight-bold" type="button">Commander</button>
@@ -72,5 +69,4 @@
     <script src="panierHelpers.js"></script>
     <script src="panier.js"></script>
 </body>
-
 </html>

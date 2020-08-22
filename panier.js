@@ -1,4 +1,4 @@
-let contenuePanier = document.getElementById('stock-panier');
+const contenuePanier = document.getElementById('stock-panier');
 let prixTotalPanier = 0;
 displayPanier();
 
@@ -41,7 +41,7 @@ function displayPanier() {
     checkPanierVide();
     displayPrixTotal();
     showTotalInPanier()
-}
+};
 
 function removeItem(e) {
     let panier = getPanier();
@@ -71,7 +71,7 @@ function checkPanierVide() {
             <h2>Votre panier est vide</h2>
         </div>`;
         contenuePanier.innerHTML = message;
-        document.getElementById('total-form').remove()
+        document.getElementById('total-form').classList.add("d-none");
         localStorage.removeItem('panier');
     }
 };
@@ -109,38 +109,81 @@ btnCommand.addEventListener('click', function() {
     formCommand.classList.remove("d-none");
     btnCommand.classList.add("d-none");
 });
-console.log(document.forms)
+
+// récup du contenu panier + injection dans l'array products
+let panier = getPanier();
+console.log(panier);
+let products = [];
+panier.forEach(element => {
+    products.push(element.id)
+    console.log("dans le forEach",element.id);
+});
+console.log("produits = ", products)
 
 // Gestion validation du formulaire
-const email = document.getElementById('email');
+let form = document.getElementById('form-command');
 
-const validCommand = document.getElementById('valid-command');
+const btnValidCommand = document.getElementById('btn-valid-command');
+btnValidCommand.addEventListener('click', submitOrder);
+btnValidCommand.addEventListener('click', modalConfirm);
 
-validCommand.addEventListener('click', submitOrder);
 
 function submitOrder(e) {
     e.preventDefault();
-    var xmlhttp = new XMLHttpRequest(); // new HttpRequest instance
+    let xmlhttp = new XMLHttpRequest(); // new HttpRequest instance
     xmlhttp.open("POST", "http://localhost:3000/api/furniture/order");
     xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == XMLHttpRequest.DONE && this.status == 201) {
             let resp = JSON.parse(this.responseText);
-            console.log(resp);
+            console.log("response",resp); 
         }
     };
     xmlhttp.send(JSON.stringify({
         contact: {
-            firstName: "Odorico",
-            lastName: "will",
-            address: " 3 rue des lampions",
-            city: "nerac",
-            email: "toto@gmail.com"
+            firstName: form.firstName.value,
+            lastName: form.lastName.value,
+            address: form.address.value,
+            city: form.city.value,
+            email: form.email.value
         },
-        products: [
-            "5beaae361c9d440000a57d99",
-            "5beaadda1c9d440000a57d98"
-
-        ]
+        products
     }));
 };
+
+function modalConfirm(){
+    let modal = 
+    `
+    <!-- Modal -->
+    <div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Confirmation de commande</h5>
+            <p>Commande n° 402-3269817-2310705</p>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+          Nous vous remercions de votre commande. Nous vous tiendrons informé par e-mail 
+          lorsque les articles de votre commande auront été expédiés. Votre date de livraison 
+          estimée est indiquée ci-dessous. Vous pouvez suivre l’état de votre commande
+          ou modifier celle-ci dans Vos commandes sur Amazon.fr. 
+          </div>
+          <div class="modal-footer">
+            <button onclick="pageAccueil()" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    `
+    document.querySelector('.container').innerHTML = modal;
+};
+
+function pageAccueil() {
+    document.location.href = "index.html"
+}
+
+
+console.log("jarrive ici",prixTotalPanier);
