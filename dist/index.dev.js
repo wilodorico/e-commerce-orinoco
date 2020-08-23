@@ -39,14 +39,3 @@ fetch("http://localhost:3000/api/furniture/").then(function (response) {
   return console.log("Erreur message : ".concat(err));
 });
 showTotalInPanier();
-fetch("http://localhost:3000/api/cameras/").then(function (response) {
-  if (response.ok) {
-    return response.json();
-  } else {
-    return Promise.reject(response.status);
-  }
-}).then(function (data) {
-  console.log(data);
-})["catch"](function (err) {
-  return console.log("Erreur message :" + err);
-});

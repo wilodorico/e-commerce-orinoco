@@ -40,7 +40,7 @@ function displayPanier() {
     };
     checkPanierVide();
     displayPrixTotal();
-    showTotalInPanier()
+    showTotalInPanier();
 };
 
 function removeItem(e) {
@@ -102,7 +102,7 @@ function addOrRemoveOneItem(e, add) {
     displayPanier();
 };
 
-// Affichage du formulaire au click sur le btn Command
+// Affichage du formulaire au click sur le btnCommand + cache le btnCommand
 const formCommand = document.getElementById('form');
 const btnCommand = document.getElementById('command');
 btnCommand.addEventListener('click', function() {
@@ -112,7 +112,6 @@ btnCommand.addEventListener('click', function() {
 
 // récup du contenu panier + injection dans l'array products
 let panier = getPanier();
-console.log(panier);
 let products = [];
 panier.forEach(element => {
     products.push(element.id)
@@ -122,33 +121,40 @@ console.log("produits = ", products)
 
 // Gestion validation du formulaire
 let form = document.getElementById('form-command');
-
 const btnValidCommand = document.getElementById('btn-valid-command');
 btnValidCommand.addEventListener('click', submitOrder);
 btnValidCommand.addEventListener('click', modalConfirm);
 
-
-function submitOrder(e) {
-    e.preventDefault();
-    let xmlhttp = new XMLHttpRequest(); // new HttpRequest instance
-    xmlhttp.open("POST", "http://localhost:3000/api/furniture/order");
-    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xmlhttp.onreadystatechange = function() {
-        if (this.readyState == XMLHttpRequest.DONE && this.status == 201) {
-            let resp = JSON.parse(this.responseText);
-            console.log("response",resp); 
-        }
-    };
-    xmlhttp.send(JSON.stringify({
+const options = {
+    method: 'POST',
+    body: JSON.stringify({
         contact: {
             firstName: form.firstName.value,
             lastName: form.lastName.value,
             address: form.address.value,
             city: form.city.value,
             email: form.email.value
-        },
-        products
-    }));
+        },products
+    }),
+    headers: {
+        "Content-type": "application/json; charset=UTF-8"
+    }
+};
+
+function submitOrder(e) {
+    e.preventDefault();
+    fetch("http://localhost:3000/api/furniture/order", options).then(response => {
+        if(response.ok) {
+            return response.json();
+        } else {
+            return Promise.reject(response.status)
+        }
+    })
+    .then(data => {
+        
+
+        console.log(data)
+    }).catch(err => console.log(`Erreur message : ${err}`));
 };
 
 function modalConfirm(){

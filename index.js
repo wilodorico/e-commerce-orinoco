@@ -30,14 +30,3 @@ fetch("http://localhost:3000/api/furniture/").then(response => {
   }
 }).catch(err => console.log(`Erreur message : ${err}`));
 showTotalInPanier();
-
-fetch("http://localhost:3000/api/cameras/").then(response => {
-  if(response.ok) {
-    return response.json();
-  } else {
-    return Promise.reject(response.status);
-  }  
-})
-.then(data => {
-  console.log(data);
-}).catch(err => console.log("Erreur message :" + err ));
