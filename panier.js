@@ -125,23 +125,26 @@ const btnValidCommand = document.getElementById('btn-valid-command');
 btnValidCommand.addEventListener('click', submitOrder);
 //btnValidCommand.addEventListener('click', modalConfirm);
 
-const options = {
-    method: 'POST',
-    body: JSON.stringify({
-        contact: {
-            firstName: form.firstName.value,
-            lastName: form.lastName.value,
-            address: form.address.value,
-            city: form.city.value,
-            email: form.email.value
-        },products
-    }),
-    headers: {
-        "Content-type": "application/json; charset=UTF-8"
-    }
-}
+
 function submitOrder(e) {
     e.preventDefault();
+    // otptions de la requête API
+    const options = {
+        method: 'POST',
+        body: JSON.stringify({
+            contact: {
+                firstName: form.firstName.value,
+                lastName: form.lastName.value,
+                address: form.address.value,
+                city: form.city.value,
+                email: form.email.value
+            },products
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    };
+    // Requête API et affichage de la modal 
     fetch("http://localhost:3000/api/furniture/order", options)
     .then(response => {
         if(response.ok) {
@@ -153,7 +156,7 @@ function submitOrder(e) {
     .then(data => {
         let modal = 
         `<!-- Modal -->
-        <div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -163,10 +166,11 @@ function submitOrder(e) {
                         </button>
                     </div>
                     <div class="modal-body">
-                        Nous vous remercions de votre commande N°<strong>${data.orderId}</strong> d'un montant de <strong>${prixTotalPanier} €</strong>. Nous vous tiendrons informé par e-mail 
-                        lorsque les articles de votre commande auront été expédiés.
-                        </div>
-                        <div class="modal-footer">
+                        <p>Nous vous remercions de votre commande N°<strong>${data.orderId}</strong> d'un montant de <strong>${prixTotalPanier} €</strong>. Nous vous tiendrons informé par e-mail 
+                        lorsque les articles de votre commande auront été expédiés.</p>
+                        <p>Au plaisir de vous revoir bientôt.</p>
+                    </div>
+                    <div class="modal-footer">
                         <button onclick="pageAccueil()" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </div>

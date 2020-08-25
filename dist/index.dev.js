@@ -18,8 +18,7 @@ fetch("http://localhost:3000/api/furniture/").then(function (response) {
       var item = _step.value;
       var prix = item.price / 100;
       var card = "<div class=\"col-lg-4 col-md-6\">\n                    <div class=\"card m-3 shadow border-0\">\n                        <img class=\"card-img-top\" src=\"".concat(item.imageUrl, "\" alt=\"").concat(item.name, "\">\n                    <div class=\"card-body\">\n                        <h5 class=\"card-title\">").concat(item.name, "</h5>\n                    <div class=\"d-flex justify-content-between align-items-center\">\n                      <div class=\"btn-group\">\n                        <a href=\"produit.html?id=").concat(item._id, "\" type=\"button\" class=\"btn btn-sm btn-secondary\">Voir le produit</a>\n                      </div>\n                      <small class=\"text-muted\">").concat(prix.toFixed(2), " \u20AC</small>\n                    </div>\n                  </div>\n                </div>\n              </div>");
-      main.innerHTML += card;
-      console.log(item);
+      main.innerHTML += card; //console.log(item)
     }
   } catch (err) {
     _didIteratorError = true;

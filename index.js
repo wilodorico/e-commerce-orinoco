@@ -26,7 +26,7 @@ fetch("http://localhost:3000/api/furniture/").then(response => {
                 </div>
               </div>`;
                 main.innerHTML += card;
-                console.log(item)
+                //console.log(item)
   }
 }).catch(err => console.log(`Erreur message : ${err}`));
 showTotalInPanier();

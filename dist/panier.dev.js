@@ -157,25 +157,26 @@ var form = document.getElementById('form-command');
 var btnValidCommand = document.getElementById('btn-valid-command');
 btnValidCommand.addEventListener('click', submitOrder); //btnValidCommand.addEventListener('click', modalConfirm);
 
-var options = {
-  method: 'POST',
-  body: JSON.stringify({
-    contact: {
-      firstName: form.firstName.value,
-      lastName: form.lastName.value,
-      address: form.address.value,
-      city: form.city.value,
-      email: form.email.value
-    },
-    products: products
-  }),
-  headers: {
-    "Content-type": "application/json; charset=UTF-8"
-  }
-};
-
 function submitOrder(e) {
-  e.preventDefault();
+  e.preventDefault(); // otptions de la requête API
+
+  var options = {
+    method: 'POST',
+    body: JSON.stringify({
+      contact: {
+        firstName: form.firstName.value,
+        lastName: form.lastName.value,
+        address: form.address.value,
+        city: form.city.value,
+        email: form.email.value
+      },
+      products: products
+    }),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8"
+    }
+  }; // Requête API et affichage de la modal 
+
   fetch("http://localhost:3000/api/furniture/order", options).then(function (response) {
     if (response.ok) {
       return response.json();
@@ -183,7 +184,7 @@ function submitOrder(e) {
       return Promise.reject(response.status);
     }
   }).then(function (data) {
-    var modal = "<!-- Modal -->\n        <div class=\"modal fade\" id=\"modalConfirm\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalCenterTitle\" aria-hidden=\"true\">\n            <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\n                <div class=\"modal-content\">\n                    <div class=\"modal-header\">\n                        <h5 class=\"modal-title\" id=\"exampleModalLongTitle\">Confirmation de commande</h5>\n                        <button onclick=\"pageAccueil()\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n                            <span aria-hidden=\"true\">&times;</span>\n                        </button>\n                    </div>\n                    <div class=\"modal-body\">\n                        Nous vous remercions de votre commande N\xB0<strong>".concat(data.orderId, "</strong> d'un montant de <strong>").concat(prixTotalPanier, " \u20AC</strong>. Nous vous tiendrons inform\xE9 par e-mail \n                        lorsque les articles de votre commande auront \xE9t\xE9 exp\xE9di\xE9s.\n                        </div>\n                        <div class=\"modal-footer\">\n                        <button onclick=\"pageAccueil()\" type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n                    </div>\n                </div>\n            </div>\n        </div>");
+    var modal = "<!-- Modal -->\n        <div class=\"modal fade\" id=\"modalConfirm\" tabindex=\"-1\" role=\"dialog\" data-backdrop=\"static\" data-keyboard=\"false\" aria-labelledby=\"exampleModalCenterTitle\" aria-hidden=\"true\">\n            <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\n                <div class=\"modal-content\">\n                    <div class=\"modal-header\">\n                        <h5 class=\"modal-title\" id=\"exampleModalLongTitle\">Confirmation de commande</h5>\n                        <button onclick=\"pageAccueil()\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n                            <span aria-hidden=\"true\">&times;</span>\n                        </button>\n                    </div>\n                    <div class=\"modal-body\">\n                        <p>Nous vous remercions de votre commande N\xB0<strong>".concat(data.orderId, "</strong> d'un montant de <strong>").concat(prixTotalPanier, " \u20AC</strong>. Nous vous tiendrons inform\xE9 par e-mail \n                        lorsque les articles de votre commande auront \xE9t\xE9 exp\xE9di\xE9s.</p>\n                        <p>Au plaisir de vous revoir bient\xF4t.</p>\n                    </div>\n                    <div class=\"modal-footer\">\n                        <button onclick=\"pageAccueil()\" type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n                    </div>\n                </div>\n            </div>\n        </div>");
     document.querySelector('.container').innerHTML = modal;
     $('#modalConfirm').modal('show');
     console.log(data);
