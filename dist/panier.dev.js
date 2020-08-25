@@ -155,8 +155,8 @@ console.log("produits = ", products); // Gestion validation du formulaire
 
 var form = document.getElementById('form-command');
 var btnValidCommand = document.getElementById('btn-valid-command');
-btnValidCommand.addEventListener('click', submitOrder);
-btnValidCommand.addEventListener('click', modalConfirm);
+btnValidCommand.addEventListener('click', submitOrder); //btnValidCommand.addEventListener('click', modalConfirm);
+
 var options = {
   method: 'POST',
   body: JSON.stringify({
@@ -183,6 +183,9 @@ function submitOrder(e) {
       return Promise.reject(response.status);
     }
   }).then(function (data) {
+    var modal = "<!-- Modal -->\n        <div class=\"modal fade\" id=\"modalConfirm\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalCenterTitle\" aria-hidden=\"true\">\n            <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\n                <div class=\"modal-content\">\n                    <div class=\"modal-header\">\n                        <h5 class=\"modal-title\" id=\"exampleModalLongTitle\">Confirmation de commande</h5>\n                        <button onclick=\"pageAccueil()\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n                            <span aria-hidden=\"true\">&times;</span>\n                        </button>\n                    </div>\n                    <div class=\"modal-body\">\n                        Nous vous remercions de votre commande N\xB0<strong>".concat(data.orderId, "</strong> d'un montant de <strong>").concat(prixTotalPanier, " \u20AC</strong>. Nous vous tiendrons inform\xE9 par e-mail \n                        lorsque les articles de votre commande auront \xE9t\xE9 exp\xE9di\xE9s.\n                        </div>\n                        <div class=\"modal-footer\">\n                        <button onclick=\"pageAccueil()\" type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n                    </div>\n                </div>\n            </div>\n        </div>");
+    document.querySelector('.container').innerHTML = modal;
+    $('#modalConfirm').modal('show');
     console.log(data);
   })["catch"](function (err) {
     return console.log("Erreur message : ".concat(err));
@@ -191,15 +194,9 @@ function submitOrder(e) {
 
 ;
 
-function modalConfirm() {
-  var modal = "\n    <!-- Modal -->\n    <div class=\"modal fade\" id=\"modalConfirm\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalCenterTitle\" aria-hidden=\"true\">\n      <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\n        <div class=\"modal-content\">\n          <div class=\"modal-header\">\n            <h5 class=\"modal-title\" id=\"exampleModalLongTitle\">Confirmation de commande</h5>\n            <p>Commande n\xB0 402-3269817-2310705</p>\n            <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n              <span aria-hidden=\"true\">&times;</span>\n            </button>\n          </div>\n          <div class=\"modal-body\">\n          Nous vous remercions de votre commande. Nous vous tiendrons inform\xE9 par e-mail \n          lorsque les articles de votre commande auront \xE9t\xE9 exp\xE9di\xE9s. Votre date de livraison \n          estim\xE9e est indiqu\xE9e ci-dessous. Vous pouvez suivre l\u2019\xE9tat de votre commande\n          ou modifier celle-ci dans Vos commandes sur Amazon.fr. \n          </div>\n          <div class=\"modal-footer\">\n            <button onclick=\"pageAccueil()\" type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n          </div>\n        </div>\n      </div>\n    </div>\n    ";
-  document.querySelector('.container').innerHTML = modal;
+function pageAccueil() {
+  document.location.href = "index.html";
+  localStorage.clear();
 }
 
 ;
-
-function pageAccueil() {
-  document.location.href = "index.html";
-}
-
-console.log("jarrive ici", prixTotalPanier);

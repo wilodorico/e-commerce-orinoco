@@ -41,7 +41,6 @@ fetch("http://localhost:3000/api/furniture/" + urlParam.get('id') ).then(respons
   });
 
   function stockPanier() {
-    //const selectVernis = document.getElementById('vernis');
     let panier = getPanier(); // decodage du json du local storage via panierHelper
     let allreadyInBasket = false;
     // on cherche dans notre panier si un élément similaire existe déja
