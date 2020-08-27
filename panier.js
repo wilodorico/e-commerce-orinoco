@@ -123,11 +123,97 @@ console.log("produits = ", products)
 let form = document.getElementById('form-command');
 const btnValidCommand = document.getElementById('btn-valid-command');
 btnValidCommand.addEventListener('click', submitOrder);
-//btnValidCommand.addEventListener('click', modalConfirm);
+form.addEventListener('change', validInput);
 
+// regex verification des inputs
+let emailRegex = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g');
+let nameRegex = new RegExp("^[a-zA-Z '.-]*$");
+let addressRegex = new RegExp("^[a-zA-Z0-9 ]{0,10}[ -']{0,1}[a-zA-Z]+");
+
+function validInput() {
+    let smallEmail = form.email.nextElementSibling;
+    let smallFirstName = form.firstName.nextElementSibling;
+    let smallLastName = form.lastName.nextElementSibling;
+    let smallAddress = form.address.nextElementSibling;
+    let smallCity = form.city.nextElementSibling;
+    
+    // test input lastName
+    if(!form.lastName.value) {
+        return smallLastName.innerHTML = "Veuillez renseigner votre nom";
+     }
+     if(nameRegex.test(form.lastName.value)) {
+        smallLastName.innerHTML = "valide";
+        smallLastName.classList.remove('text-danger');
+        smallLastName.classList.add('text-success');
+     } else {
+         smallLastName.innerHTML = "format non valide";
+         smallLastName.classList.remove('text-success');
+         smallLastName.classList.add('text-danger');
+     };
+    // test input firstname
+    if(!form.firstName.value) {
+       return smallFirstName.innerHTML = "Veuillez renseigner votre prénom";
+    }
+    if(nameRegex.test(form.firstName.value)) {
+        smallFirstName.innerHTML = "valide";
+        smallFirstName.classList.remove('text-danger');
+        smallFirstName.classList.add('text-success');
+    } else {
+        smallFirstName.innerHTML = "format non valide";
+        smallFirstName.classList.remove('text-success');
+        smallFirstName.classList.add('text-danger');
+    };
+    // test input adresse
+    if(!form.address.value) {
+        return smallAddress.innerHTML = "Veuillez renseigner votre adresse";
+     }
+     if(addressRegex.test(form.address.value)) {
+         smallAddress.innerHTML = "valide";
+         smallAddress.classList.remove('text-danger');
+         smallAddress.classList.add('text-success');
+     } else {
+         smallAddress.innerHTML = "format non valide";
+         smallAddress.classList.remove('text-success');
+         smallAddress.classList.add('text-danger');
+     };
+     // test input ville
+    if(!form.city.value) {
+        return smallCity.innerHTML = "Veuillez renseigner la ville";
+     }
+     if(addressRegex.test(form.city.value)) {
+         smallCity.innerHTML = "valide";
+         smallCity.classList.remove('text-danger');
+         smallCity.classList.add('text-success');
+     } else {
+         smallCity.innerHTML = "format non valide";
+         smallCity.classList.remove('text-success');
+         smallCity.classList.add('text-danger');
+     };
+    // Test de l'input email
+    if(!form.email.value) {
+        return smallEmail.innerHTML = "Veuillez renseigner votre email";
+     }
+    if(emailRegex.test(form.email.value)) {
+        smallEmail.innerHTML = "email valide";
+        smallEmail.classList.remove('text-danger');
+        smallEmail.classList.add('text-success');
+    } else {
+        smallEmail.innerHTML = "format email non valide";
+        smallEmail.classList.remove('text-success');
+        smallEmail.classList.add('text-danger');
+    }
+};
 
 function submitOrder(e) {
     e.preventDefault();
+    // verification des tests regex
+    if (!nameRegex.test(form.lastName.value) || 
+        !nameRegex.test(form.firstName.value) ||
+        !addressRegex.test(form.address.value) ||
+        !addressRegex.test(form.city.value) ||
+        !emailRegex.test(form.email.value)) {
+        return;
+    }
     // otptions de la requête API
     const options = {
         method: 'POST',
@@ -178,11 +264,11 @@ function submitOrder(e) {
         </div>`
         document.querySelector('.container').innerHTML = modal;  
         $('#modalConfirm').modal('show');
+        localStorage.clear();
         console.log(data)
     }).catch(err => console.log(`Erreur message : ${err}`));
 };
-
+// function aller à la page d'accueil
 function pageAccueil() {
     document.location.href = "index.html";
-    localStorage.clear();
 };

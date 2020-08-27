@@ -20,7 +20,7 @@
             <div class="col-8">
                 <section id="stock-panier">
                     <div class="border-bottom mb-4">
-                        <h4 class="col-4 font-weight-bold">Votre panier</h4>
+                        <h1 class="col-4 font-weight-bold">Votre panier</h1>
                     </div>
                 </section>
             </div>
@@ -35,26 +35,31 @@
                         <form id="form-command" name="form-command" class="col">
                             <div class="form-group">
                                 <label for="last-name">Nom</label>
-                                <input type="text" class="form-control" name="lastName" required>
+                                <input type="text" class="form-control" name="lastName" maxlength="31" required>
+                                <small></small>
                             </div>
                             <div class="form-group">
                                 <label for="first-name">Prénom</label>
-                                <input type="text" class="form-control" name="firstName" required>
+                                <input type="text" class="form-control" name="firstName" maxlength="31" required>
+                                <small></small>
                             </div>
                             <div class="form-group">
                                 <label for="adresse">Adresse</label>
-                                <input type="text" class="form-control" name="address" required>
+                                <input type="text" class="form-control" name="address" maxlength="49" required>
+                                <small></small>
                             </div>
                             <div class="form-group">
                                 <label for="city">Ville</label>
-                                <input type="text" class="form-control" name="city" required>
+                                <input type="text" class="form-control" name="city" maxlength="31" required>
+                                <small></small>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="email" class="form-control" name="email" id="email" required>
+                                <small></small>
                             </div>
                             <div class="form-group">
-                                <button id="btn-valid-command" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalConfirm">Valider la commande</button>
+                                <button id="btn-valid-command" class="btn btn-primary btn-block" type="submit" data-toggle="modal" data-target="#modalConfirm">Valider la commande</button>
                             </div>
                         </form>
                     </div>

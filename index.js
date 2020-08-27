@@ -11,7 +11,7 @@ fetch("http://localhost:3000/api/furniture/").then(response => {
   for (const item of data) {
             let prix = item.price / 100;
             let card = 
-                `<div class="col-lg-4 col-md-6">
+                `<article class="col-lg-4 col-md-6">
                     <div class="card m-3 shadow border-0">
                         <img class="card-img-top" src="${item.imageUrl}" alt="${item.name}">
                     <div class="card-body">
@@ -24,7 +24,7 @@ fetch("http://localhost:3000/api/furniture/").then(response => {
                     </div>
                   </div>
                 </div>
-              </div>`;
+              </article>`;
                 main.innerHTML += card;
                 //console.log(item)
   }

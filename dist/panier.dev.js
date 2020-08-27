@@ -155,10 +155,108 @@ console.log("produits = ", products); // Gestion validation du formulaire
 
 var form = document.getElementById('form-command');
 var btnValidCommand = document.getElementById('btn-valid-command');
-btnValidCommand.addEventListener('click', submitOrder); //btnValidCommand.addEventListener('click', modalConfirm);
+btnValidCommand.addEventListener('click', submitOrder);
+form.addEventListener('change', validInput); // regex verification des inputs
+
+var emailRegex = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g');
+var nameRegex = new RegExp("^[a-zA-Z '.-]*$");
+var addressRegex = new RegExp("^[a-zA-Z0-9 ]{0,10}[ -']{0,1}[a-zA-Z]+");
+
+function validInput() {
+  var smallEmail = form.email.nextElementSibling;
+  var smallFirstName = form.firstName.nextElementSibling;
+  var smallLastName = form.lastName.nextElementSibling;
+  var smallAddress = form.address.nextElementSibling;
+  var smallCity = form.city.nextElementSibling; // test input lastName
+
+  if (!form.lastName.value) {
+    return smallLastName.innerHTML = "Veuillez renseigner votre nom";
+  }
+
+  if (nameRegex.test(form.lastName.value)) {
+    smallLastName.innerHTML = "valide";
+    smallLastName.classList.remove('text-danger');
+    smallLastName.classList.add('text-success');
+  } else {
+    smallLastName.innerHTML = "format non valide";
+    smallLastName.classList.remove('text-success');
+    smallLastName.classList.add('text-danger');
+  }
+
+  ; // test input firstname
+
+  if (!form.firstName.value) {
+    return smallFirstName.innerHTML = "Veuillez renseigner votre prénom";
+  }
+
+  if (nameRegex.test(form.firstName.value)) {
+    smallFirstName.innerHTML = "valide";
+    smallFirstName.classList.remove('text-danger');
+    smallFirstName.classList.add('text-success');
+  } else {
+    smallFirstName.innerHTML = "format non valide";
+    smallFirstName.classList.remove('text-success');
+    smallFirstName.classList.add('text-danger');
+  }
+
+  ; // test input adresse
+
+  if (!form.address.value) {
+    return smallAddress.innerHTML = "Veuillez renseigner votre adresse";
+  }
+
+  if (addressRegex.test(form.address.value)) {
+    smallAddress.innerHTML = "valide";
+    smallAddress.classList.remove('text-danger');
+    smallAddress.classList.add('text-success');
+  } else {
+    smallAddress.innerHTML = "format non valide";
+    smallAddress.classList.remove('text-success');
+    smallAddress.classList.add('text-danger');
+  }
+
+  ; // test input ville
+
+  if (!form.city.value) {
+    return smallCity.innerHTML = "Veuillez renseigner la ville";
+  }
+
+  if (addressRegex.test(form.city.value)) {
+    smallCity.innerHTML = "valide";
+    smallCity.classList.remove('text-danger');
+    smallCity.classList.add('text-success');
+  } else {
+    smallCity.innerHTML = "format non valide";
+    smallCity.classList.remove('text-success');
+    smallCity.classList.add('text-danger');
+  }
+
+  ; // Test de l'input email
+
+  if (!form.email.value) {
+    return smallEmail.innerHTML = "Veuillez renseigner votre email";
+  }
+
+  if (emailRegex.test(form.email.value)) {
+    smallEmail.innerHTML = "email valide";
+    smallEmail.classList.remove('text-danger');
+    smallEmail.classList.add('text-success');
+  } else {
+    smallEmail.innerHTML = "format email non valide";
+    smallEmail.classList.remove('text-success');
+    smallEmail.classList.add('text-danger');
+  }
+}
+
+;
 
 function submitOrder(e) {
-  e.preventDefault(); // otptions de la requête API
+  e.preventDefault(); // verification des tests regex
+
+  if (!nameRegex.test(form.lastName.value) || !nameRegex.test(form.firstName.value) || !addressRegex.test(form.address.value) || !addressRegex.test(form.city.value) || !emailRegex.test(form.email.value)) {
+    return;
+  } // otptions de la requête API
+
 
   var options = {
     method: 'POST',
@@ -187,17 +285,17 @@ function submitOrder(e) {
     var modal = "<!-- Modal -->\n        <div class=\"modal fade\" id=\"modalConfirm\" tabindex=\"-1\" role=\"dialog\" data-backdrop=\"static\" data-keyboard=\"false\" aria-labelledby=\"exampleModalCenterTitle\" aria-hidden=\"true\">\n            <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\n                <div class=\"modal-content\">\n                    <div class=\"modal-header\">\n                        <h5 class=\"modal-title\" id=\"exampleModalLongTitle\">Confirmation de commande</h5>\n                        <button onclick=\"pageAccueil()\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n                            <span aria-hidden=\"true\">&times;</span>\n                        </button>\n                    </div>\n                    <div class=\"modal-body\">\n                        <p>Nous vous remercions de votre commande N\xB0<strong>".concat(data.orderId, "</strong> d'un montant de <strong>").concat(prixTotalPanier, " \u20AC</strong>. Nous vous tiendrons inform\xE9 par e-mail \n                        lorsque les articles de votre commande auront \xE9t\xE9 exp\xE9di\xE9s.</p>\n                        <p>Au plaisir de vous revoir bient\xF4t.</p>\n                    </div>\n                    <div class=\"modal-footer\">\n                        <button onclick=\"pageAccueil()\" type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n                    </div>\n                </div>\n            </div>\n        </div>");
     document.querySelector('.container').innerHTML = modal;
     $('#modalConfirm').modal('show');
+    localStorage.clear();
     console.log(data);
   })["catch"](function (err) {
     return console.log("Erreur message : ".concat(err));
   });
 }
 
-;
+; // function aller à la page d'accueil
 
 function pageAccueil() {
   document.location.href = "index.html";
-  localStorage.clear();
 }
 
 ;
