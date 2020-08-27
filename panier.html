@@ -10,11 +10,12 @@
 
 </head>
 <body>
-    <header class="header">
-        <a href="index.html" class="header_logo">
-            <img src="./img/logo.png" alt="logo orinoco">
+    <header class="navbar navbar-light header">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <img src="./img/logo.png" alt="logo orinoco" width="50" height="70" class="d-inline-block align-top" alt="logo">
+        <h1>Orinoco</h1>  
         </a>
-    </header>
+      </header>
     <main class="container">
         <div class="row">
             <div class="col-lg-8">
@@ -23,11 +24,11 @@
                 </div>
             </div>
             <div id="total-form" class="col-lg-4">
-                <div class="card">
+                <div class="card mb-5">
                     <div class="card-body">
                         <h5 class="card-title">Sous-total (<span id="panier">0</span> articles) : <span class="prix font-weight-bold"></span></h5>
                         <p class="h6">Livraison : Gratuite</p>
-                        <p class="h6">Total(TVA incluse) : <span class="total-prix font-weight-bold"></span></p>
+                        <p class="h6">Total (TVA incluse) : <span class="total-prix font-weight-bold"></span></p>
                     </div>
                     <div id="form" class="d-none">
                         <form id="form-command" name="form-command" class="col">

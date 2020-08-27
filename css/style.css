@@ -13,47 +13,42 @@
   font-size: 1.2rem;
 }
 
-.fa-plus-circle, .fa-minus-circle {
+.fa-plus-circle {
   font-size: 20px;
-  margin: 5px;
+  margin-right: 5px;
+}
+
+.fa-minus-circle {
+  font-size: 20px;
+  margin-left: 5px;
+}
+
+.fa-trash-alt {
+  font-size: 20px;
 }
 
 .header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  height: 150px;
   background-color: #f3e9f1;
   margin-bottom: 50px;
 }
-.header_logo {
-  margin-left: 30px;
-}
-.header_panier {
-  display: flex;
-  align-items: flex-end;
-  margin-right: 30px;
-  margin-bottom: 5px;
-  width: 100px;
-}
-.header_panier a {
+.header a {
   color: black;
   text-decoration: none;
 }
-.header .fa-shopping-cart {
+.header .fa-shopping-basket {
   font-size: 30px;
 }
 .header_panier-count {
   display: inline-flex;
   position: relative;
   justify-content: center;
-  top: -20px;
-  left: -18px;
+  top: -15px;
+  left: -22px;
   width: 23px;
   background-color: gray;
   border-radius: 50%;
   color: white;
-  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .footer {

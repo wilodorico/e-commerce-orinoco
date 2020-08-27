@@ -7,7 +7,16 @@
   font-size: 1.2rem;
 }
 
-.fa-plus-circle, .fa-minus-circle {
+.fa-plus-circle {
   font-size: 20px;
-  margin: 5px;
+  margin-right: 5px;
+}
+
+.fa-minus-circle {
+  font-size: 20px;
+  margin-left: 5px;
+}
+
+.fa-trash-alt {
+  font-size: 20px;
 }
