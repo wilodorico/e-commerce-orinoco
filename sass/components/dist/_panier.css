@@ -1,0 +1,13 @@
+.titre-element {
+  border-bottom: 1px solid black;
+  margin-bottom: 15px;
+}
+
+.sous-total {
+  font-size: 1.2rem;
+}
+
+.fa-plus-circle, .fa-minus-circle {
+  font-size: 20px;
+  margin: 5px;
+}

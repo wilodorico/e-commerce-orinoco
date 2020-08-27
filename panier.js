@@ -6,9 +6,8 @@ function displayPanier() {
     prixTotalPanier = 0;
     contenuePanier.innerHTML =
         `<div class="border-bottom mb-4">
-        <h4 class="col-4 font-weight-bold">Votre panier</h4>
+        <h2 class="h4 font-weight-bold">Votre panier</h2>
     </div>`;
-
     let panier = getPanier();
     for (let panierItem of panier) {
         let prix = panierItem.prix / 100;
@@ -19,17 +18,22 @@ function displayPanier() {
                     <div class="col-md-3">
                             <img id="image" src="${panierItem.img}" class="card-img mb-3" alt="photo ${panierItem.name}">
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <h5 class="card-title">${panierItem.name}</h5>
                         <p class="card-text">${panierItem.vernis}</p>
                         <p class="card-text">${prix.toFixed(2)}€</p>
                     </div>
-                    <div class="d-flex flex-row">
-                        <span onclick="pushOneItem(event.currentTarget)" data-id="${panierItem.id}" data-vernis="${panierItem.vernis}" aria-label="ajoute"><i class="fas fa-plus-circle"></i></span>
-                        <p class="card-text">${panierItem.count}</p>
-                        <span onclick="removeOneItem(event.currentTarget)" data-id="${panierItem.id}" data-vernis="${panierItem.vernis}" aria-label="diminu"><i class="fas fa-minus-circle"></i></span>
+                    <div class="col-md d-flex align-items-start">
+                        <button onclick="pushOneItem(event.currentTarget)" data-id="${panierItem.id}" data-vernis="${panierItem.vernis}" type="button" class="close" aria-label="diminu">
+                        <i class="fas fa-plus-circle"></i>
+                        </button>${panierItem.count}
+                        
+                        <button onclick="removeOneItem(event.currentTarget)" data-id="${panierItem.id}" data-vernis="${panierItem.vernis}" type="button" class="close" aria-label="diminu">
+                            <i class="fas fa-minus-circle"></i>
+                        </button>
                     </div>
-                    <div class="col-md-2">
+                    
+                    <div class="col-md d-flex align-items-start justify-content-between">
                         <p class="card-text prix-total">${prixTotalArticle} €</p>
                         <button onclick="removeItem(event.currentTarget)" data-id="${panierItem.id}" data-vernis="${panierItem.vernis}" type="button" class="close" aria-label="Close">
                             <i class="fas fa-trash-alt"></i>

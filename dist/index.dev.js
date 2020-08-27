@@ -36,5 +36,6 @@ fetch("http://localhost:3000/api/furniture/").then(function (response) {
   }
 })["catch"](function (err) {
   return console.log("Erreur message : ".concat(err));
-});
+}); // appel de la fonction pour voir le stock panier
+
 showTotalInPanier();

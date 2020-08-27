@@ -29,4 +29,5 @@ fetch("http://localhost:3000/api/furniture/").then(response => {
                 //console.log(item)
   }
 }).catch(err => console.log(`Erreur message : ${err}`));
+// appel de la fonction pour voir le stock panier
 showTotalInPanier();
