@@ -1,7 +1,8 @@
 "use strict";
 
 var urlParam = new URLSearchParams(window.location.search);
-var main = document.getElementById('main');
+var main = document.getElementById('main'); // Requête API
+
 fetch("http://localhost:3000/api/furniture/" + urlParam.get('id')).then(function (response) {
   if (response.ok) {
     return response.json();
@@ -40,8 +41,10 @@ fetch("http://localhost:3000/api/furniture/" + urlParam.get('id')).then(function
 
   var btnAjoutPanier = document.getElementById('ajout-panier');
   btnAjoutPanier.addEventListener('click', function (e) {
+    // Ajout au panier au click 
     stockPanier(e);
-    showTotalInPanier(); //console.log("ajout au panier");
+    showTotalInPanier(); // récupere le nommbre total au panier et l'affiche dans le header
+    //console.log("ajout au panier");
   });
 
   function stockPanier() {
@@ -92,7 +95,7 @@ fetch("http://localhost:3000/api/furniture/" + urlParam.get('id')).then(function
       });
     }
 
-    savePanier(panier); // sauvgarde du json dans le local storage via panierHelper
+    savePanier(panier); // sauvegarde du json dans le local storage via panierHelper
   }
 
   ;

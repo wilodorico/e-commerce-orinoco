@@ -63,7 +63,7 @@ function displayPrixTotal() {
     const totalPrix = document.querySelector('.total-prix');
     sousTotalPrix.textContent = prixTotalPanier + "€";
     totalPrix.textContent = prixTotalPanier + "€";
-    console.log(prixTotalPanier);
+    //console.log(prixTotalPanier);
 };
 
 function checkPanierVide() {
@@ -100,7 +100,7 @@ function addOrRemoveOneItem(e, add) {
             }
         }
     };
-    savePanier(panier); // sauvgarde du json dans le local storage via panierHelper
+    savePanier(panier); // sauvegarde du json dans le local storage via panierHelper
     displayPanier();
 };
 
@@ -117,9 +117,9 @@ let panier = getPanier();
 let products = [];
 panier.forEach(element => {
     products.push(element.id)
-    console.log("dans le forEach",element.id);
+    //console.log("dans le forEach",element.id);
 });
-console.log("produits = ", products)
+//console.log("produits = ", products)
 
 // Gestion validation du formulaire
 let form = document.getElementById('form-command');
@@ -267,7 +267,7 @@ function submitOrder(e) {
         document.querySelector('.container').innerHTML = modal;  
         $('#modalConfirm').modal('show');
         localStorage.clear();
-        console.log(data)
+        //console.log(data)
     }).catch(err => console.log(`Erreur message : ${err}`));
 };
 // function aller à la page d'accueil

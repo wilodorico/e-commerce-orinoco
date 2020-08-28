@@ -1,5 +1,6 @@
 const urlParam = new URLSearchParams(window.location.search);
 const main = document.getElementById('main');
+// Requête API
 fetch("http://localhost:3000/api/furniture/" + urlParam.get('id')).then(response => {
   if(response.ok) {
     return response.json();
@@ -35,9 +36,9 @@ fetch("http://localhost:3000/api/furniture/" + urlParam.get('id')).then(response
       vernis.innerHTML += '<option value="' + choice + '">' + choice + '</option>';
   }
   const btnAjoutPanier = document.getElementById('ajout-panier');
-  btnAjoutPanier.addEventListener('click', function(e) {
+  btnAjoutPanier.addEventListener('click', function(e) {  // Ajout au panier au click 
     stockPanier(e);
-    showTotalInPanier();
+    showTotalInPanier(); // récupere le nommbre total au panier et l'affiche dans le header
     //console.log("ajout au panier");
   });
 
@@ -55,7 +56,7 @@ fetch("http://localhost:3000/api/furniture/" + urlParam.get('id')).then(response
     if (!allreadyInBasket) {
       panier.push({ id: item._id, name: item.name, img: item.imageUrl, prix: item.price, vernis: vernis.value, count: 1 });
     }
-    savePanier(panier); // sauvgarde du json dans le local storage via panierHelper
+    savePanier(panier); // sauvegarde du json dans le local storage via panierHelper
   };
 }).catch(err => console.log(`Erreur message : ${err}`));
 showTotalInPanier();

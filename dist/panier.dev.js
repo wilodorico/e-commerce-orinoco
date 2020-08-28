@@ -63,8 +63,7 @@ function displayPrixTotal() {
   var sousTotalPrix = document.querySelector('.prix');
   var totalPrix = document.querySelector('.total-prix');
   sousTotalPrix.textContent = prixTotalPanier + "€";
-  totalPrix.textContent = prixTotalPanier + "€";
-  console.log(prixTotalPanier);
+  totalPrix.textContent = prixTotalPanier + "€"; //console.log(prixTotalPanier);
 }
 
 ;
@@ -131,7 +130,7 @@ function addOrRemoveOneItem(e, add) {
   }
 
   ;
-  savePanier(panier); // sauvgarde du json dans le local storage via panierHelper
+  savePanier(panier); // sauvegarde du json dans le local storage via panierHelper
 
   displayPanier();
 }
@@ -148,10 +147,9 @@ btnCommand.addEventListener('click', function () {
 var panier = getPanier();
 var products = [];
 panier.forEach(function (element) {
-  products.push(element.id);
-  console.log("dans le forEach", element.id);
-});
-console.log("produits = ", products); // Gestion validation du formulaire
+  products.push(element.id); //console.log("dans le forEach",element.id);
+}); //console.log("produits = ", products)
+// Gestion validation du formulaire
 
 var form = document.getElementById('form-command');
 var btnValidCommand = document.getElementById('btn-valid-command');
@@ -285,8 +283,7 @@ function submitOrder(e) {
     var modal = "<!-- Modal -->\n        <div class=\"modal fade\" id=\"modalConfirm\" tabindex=\"-1\" role=\"dialog\" data-backdrop=\"static\" data-keyboard=\"false\" aria-labelledby=\"exampleModalCenterTitle\" aria-hidden=\"true\">\n            <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\n                <div class=\"modal-content\">\n                    <div class=\"modal-header\">\n                        <h5 class=\"modal-title\" id=\"exampleModalLongTitle\">Confirmation de commande</h5>\n                        <button onclick=\"pageAccueil()\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n                            <span aria-hidden=\"true\">&times;</span>\n                        </button>\n                    </div>\n                    <div class=\"modal-body\">\n                        <p>Nous vous remercions de votre commande N\xB0<strong>".concat(data.orderId, "</strong> d'un montant de <strong>").concat(prixTotalPanier, " \u20AC</strong>. Nous vous tiendrons inform\xE9 par e-mail \n                        lorsque les articles de votre commande auront \xE9t\xE9 exp\xE9di\xE9s.</p>\n                        <p>Au plaisir de vous revoir bient\xF4t.</p>\n                    </div>\n                    <div class=\"modal-footer\">\n                        <button onclick=\"pageAccueil()\" type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n                    </div>\n                </div>\n            </div>\n        </div>");
     document.querySelector('.container').innerHTML = modal;
     $('#modalConfirm').modal('show');
-    localStorage.clear();
-    console.log(data);
+    localStorage.clear(); //console.log(data)
   })["catch"](function (err) {
     return console.log("Erreur message : ".concat(err));
   });
