@@ -8,7 +8,7 @@ fetch("http://localhost:3000/api/furniture/" + urlParam.get('id')).then(response
     return Promise.reject(response.status);
   }
 }).then(item => {
-  console.log(item)
+  //console.log(item)
   let prix = item.price / 100;
   let card =
       `<div class="card mb-3" style="max-width: 1024px;">

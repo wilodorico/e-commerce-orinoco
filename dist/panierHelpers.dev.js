@@ -47,9 +47,7 @@ function showTotalInPanier() {
   }
 
   var panier = document.getElementById('panier');
-  var articlePanier = document.getElementById('article-panier');
   panier.textContent = totalPanier;
-  articlePanier.textContent = totalPanier;
 }
 
 ;

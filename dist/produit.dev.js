@@ -10,7 +10,7 @@ fetch("http://localhost:3000/api/furniture/" + urlParam.get('id')).then(function
     return Promise.reject(response.status);
   }
 }).then(function (item) {
-  console.log(item);
+  //console.log(item)
   var prix = item.price / 100;
   var card = "<div class=\"card mb-3\" style=\"max-width: 1024px;\">\n      <div class=\"row\">\n        <div class=\"col-md-6\">\n          <img id=\"image\" src=\"".concat(item.imageUrl, "\" class=\"card-img\" alt=\"").concat(item.name, "\">\n        </div>\n        <div class=\"col-md-6\">\n          <div class=\"card-body\">\n            <h5 class=\"card-title\">").concat(item.name, "</h5>\n            <p class=\"card-text\">").concat(item.description, "</p>\n            <label for=\"vernis\">Selectionne le Vernis</label>\n              <select id=\"vernis\" class=\"form-control form-control-sm\"></select>\n            <div class=\"d-flex justify-content-between align-items-center mt-3\">\n              <small id=\"prix\" class=\"text-muted\">").concat(prix.toFixed(2), " \u20AC</small>\n              <button id=\"ajout-panier\" type=\"button\" class=\"btn btn-sm btn-secondary\">Ajouter au panier</button>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>");
   main.innerHTML += card;
