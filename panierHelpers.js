@@ -19,5 +19,7 @@ function showTotalInPanier(){
         totalPanier += totalArticle;
     }
     const panier = document.getElementById('panier');
+    const articlePanier = document.getElementById('article-panier');
     panier.textContent = totalPanier;
+    articlePanier.textContent = totalPanier;
 };

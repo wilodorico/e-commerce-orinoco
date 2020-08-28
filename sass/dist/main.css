@@ -1,7 +1,7 @@
 @font-face {
   font-family: "finger_paintregular";
-  src: url("/fonts/finger-paint/fingerpaint-regular-webfont.eot");
-  src: url("/fonts/finger-paint/fingerpaint-regular-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/finger-paint/fingerpaint-regular-webfont.woff2") format("woff2"), url("/fonts/finger-paint/fingerpaint-regular-webfont.woff") format("woff"), url("/fonts/finger-paint/fingerpaint-regular-webfont.ttf") format("truetype");
+  src: url("fingerpaint-regular-webfont.eot");
+  src: url("fingerpaint-regular-webfont.eot?#iefix") format("embedded-opentype"), url("fingerpaint-regular-webfont.woff2") format("woff2"), url("fingerpaint-regular-webfont.woff") format("woff"), url("fingerpaint-regular-webfont.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -36,10 +36,7 @@
 
 .header {
   background-color: #f3e9f1;
-  margin-bottom: 80px;
-}
-.header h1 {
-  font-family: "finger_paintregular", Helvetica, Arial, sans-serif;
+  margin-bottom: 50px;
 }
 .header a {
   color: black;
@@ -65,5 +62,3 @@
   background-color: #f3e9f1;
   width: 100%;
 }
-
-/*# sourceMappingURL=style.css.map */

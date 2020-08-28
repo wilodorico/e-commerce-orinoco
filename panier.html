@@ -3,17 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/img/icon.png" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
     <link rel="stylesheet" href="css/style.css">
     <title>Panier Orinoco-Meuble Chêne</title>
-
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <header class="navbar navbar-light header">
         <a class="navbar-brand d-flex align-items-center" href="index.html">
           <img src="./img/logo.png" alt="logo orinoco" width="50" height="70" class="d-inline-block align-top" alt="logo">
         <h1>Orinoco</h1>  
+        </a>
+        <a href="panier.html">
+            <i class="fas fa-shopping-basket"></i>
+            <span id="panier" class="header_panier-count">0</span>
         </a>
       </header>
     <main class="container">
@@ -26,7 +30,7 @@
             <div id="total-form" class="col-lg-4">
                 <div class="card mb-5">
                     <div class="card-body">
-                        <h5 class="card-title">Sous-total (<span id="panier">0</span> articles) : <span class="prix font-weight-bold"></span></h5>
+                        <h5 class="card-title">Sous-total (<span id="article-panier">0</span> articles) : <span class="prix font-weight-bold"></span></h5>
                         <p class="h6">Livraison : Gratuite</p>
                         <p class="h6">Total (TVA incluse) : <span class="total-prix font-weight-bold"></span></p>
                     </div>
@@ -67,6 +71,14 @@
             </div>
         </div>
     </main>
+    <footer class="footer mt-auto py-2 text-muted text-center text-small">
+        <p class="mb-1 pt-2">© 2017-2020 Orinoco</p>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="#">Privacy</a></li>
+          <li class="list-inline-item"><a href="#">Terms</a></li>
+          <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+      </footer>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>

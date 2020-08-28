@@ -32,7 +32,7 @@ function displayPanier() {
                     </button>
                 </div>
                 <div class="col-md d-flex align-items-start justify-content-between">
-                    <p class="card-text prix-total">${prixTotalArticle} €</p>
+                    <p class="card-text prix-total">${prixTotalArticle}€</p>
                     <button onclick="removeItem(event.currentTarget)" data-id="${panierItem.id}" data-vernis="${panierItem.vernis}" type="button" class="close" aria-label="Close">
                         <i class="fas fa-trash-alt"></i>
                     </button>
