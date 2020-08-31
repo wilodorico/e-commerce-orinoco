@@ -24,7 +24,7 @@ function displayPanier() {
                     <p class="card-text">${prix.toFixed(2)}€</p>
                 </div>
                 <div class="col-md d-flex align-items-start">
-                    <button onclick="pushOneItem(event.currentTarget)" data-id="${panierItem.id}" data-vernis="${panierItem.vernis}" type="button" class="close" aria-label="diminu">
+                    <button onclick="pushOneItem(event.currentTarget)" data-id="${panierItem.id}" data-vernis="${panierItem.vernis}" type="button" class="close" aria-label="rajoute">
                     <i class="fas fa-plus-circle"></i>
                     </button>${panierItem.count}
                     <button onclick="removeOneItem(event.currentTarget)" data-id="${panierItem.id}" data-vernis="${panierItem.vernis}" type="button" class="close" aria-label="diminu">
@@ -70,8 +70,8 @@ function checkPanierVide() {
     if (prixTotalPanier === 0) {
         let message =
             `<div class="text-center">
-            <h2>Votre panier est vide</h2>
-        </div>`;
+                <h2>Votre panier est vide</h2>
+            </div>`;
         contenuePanier.innerHTML = message;
         document.getElementById('total-form').classList.add("d-none");
         localStorage.removeItem('panier');
@@ -117,9 +117,7 @@ let panier = getPanier();
 let products = [];
 panier.forEach(element => {
     products.push(element.id)
-    //console.log("dans le forEach",element.id);
 });
-//console.log("produits = ", products)
 
 // Gestion validation du formulaire
 let form = document.getElementById('form-command');
@@ -205,7 +203,7 @@ function validInput() {
         smallEmail.classList.add('text-danger');
     }
 };
-
+// function envoie du formulaire avec requête API methode POST
 function submitOrder(e) {
     e.preventDefault();
     // verification des tests regex
@@ -232,7 +230,7 @@ function submitOrder(e) {
             "Content-type": "application/json; charset=UTF-8"
         }
     };
-    // Requête API et affichage de la modal 
+    // Requête API et création du modal de confirmation + affichage du modal 
     fetch("http://localhost:3000/api/furniture/order", options)
     .then(response => {
         if(response.ok) {

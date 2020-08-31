@@ -12,15 +12,15 @@ fetch("http://localhost:3000/api/furniture/" + urlParam.get('id')).then(response
   let prix = item.price / 100;
   let card =
       `<div class="card mb-3" style="max-width: 1024px;">
-      <div class="row">
-        <div class="col-md-6">
-          <img id="image" src="${item.imageUrl}" class="card-img" alt="${item.name}">
-        </div>
-        <div class="col-md-6">
-          <div class="card-body">
-            <h5 class="card-title">${item.name}</h5>
-            <p class="card-text">${item.description}</p>
-            <label for="vernis">Selectionne le Vernis</label>
+        <div class="row">
+          <div class="col-md-6">
+            <img id="image" src="${item.imageUrl}" class="card-img" alt="${item.name}">
+          </div>
+          <div class="col-md-6">
+            <div class="card-body">
+              <h5 class="card-title">${item.name}</h5>
+              <p class="card-text">${item.description}</p>
+              <label for="vernis">Selectionner le Vernis</label>
               <select id="vernis" class="form-control form-control-sm"></select>
             <div class="d-flex justify-content-between align-items-center mt-3">
               <small id="prix" class="text-muted">${prix.toFixed(2)} €</small>
@@ -39,7 +39,6 @@ fetch("http://localhost:3000/api/furniture/" + urlParam.get('id')).then(response
   btnAjoutPanier.addEventListener('click', function(e) {  // Ajout au panier au click 
     stockPanier(e);
     showTotalInPanier(); // récupere le nommbre total au panier et l'affiche dans le header
-    //console.log("ajout au panier");
   });
 
   function stockPanier() {
