@@ -1,7 +1,7 @@
 @font-face {
   font-family: "finger_paintregular";
-  src: url("../../fonts/fingerpaint-regular-webfont.eot");
-  src: url("../../fonts/fingerpaint-regular-webfont.eot?#iefix") format("embedded-opentype"), url("../../fonts/fingerpaint-regular-webfont.woff") format("woff"), url("../../fonts/fingerpaint-regular-webfont.ttf") format("truetype"), url("../../fonts/fingerpaint-regular-webfont.svg#finger_paintregular") format("svg");
+  src: url("/fonts/fingerpaint-regular-webfont.eot");
+  src: url("/fonts/fingerpaint-regular-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/fingerpaint-regular-webfont.ttf") format("truetype"), url("/fonts/fingerpaint-regular-webfont.svg#finger_paintregular") format("svg");
   font-weight: normal;
   font-style: normal;
 }
