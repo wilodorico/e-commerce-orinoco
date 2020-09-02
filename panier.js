@@ -6,7 +6,7 @@ function displayPanier() {
     prixTotalPanier = 0;
     contenuePanier.innerHTML =
         `<div class="border-bottom mb-4">
-        <h2 class="h4 font-weight-bold">Votre panier</h2>
+        <h2 class="font-weight-bold h4">Votre panier</h2>
     </div>`;
     let panier = getPanier();
     for (let panierItem of panier) {
@@ -19,7 +19,7 @@ function displayPanier() {
                     <img id="image" src="${panierItem.img}" class="card-img mb-3" alt="photo ${panierItem.name}">
                 </div>
                 <div class="col-md-4">
-                    <h5 class="card-title">${panierItem.name}</h5>
+                    <h3 class="card-title h5">${panierItem.name}</h3>
                     <p class="card-text">${panierItem.vernis}</p>
                     <p class="card-text">${prix.toFixed(2)}€</p>
                 </div>
@@ -243,10 +243,10 @@ function submitOrder(e) {
         let modal = 
         `<!-- Modal -->
         <div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Confirmation de commande</h5>
+                        <h2 class="h5 modal-title" id="exampleModalLongTitle">Confirmation de commande</h2>
                         <button onclick="pageAccueil()" type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

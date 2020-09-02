@@ -18,7 +18,7 @@ fetch("http://localhost:3000/api/furniture/" + urlParam.get('id')).then(response
           </div>
           <div class="col-md-6">
             <div class="card-body">
-              <h5 class="card-title">${item.name}</h5>
+              <h2 class="card-title h5">${item.name}</h2>
               <p class="card-text">${item.description}</p>
               <label for="vernis">Selectionner le Vernis</label>
               <select id="vernis" class="form-control form-control-sm"></select>

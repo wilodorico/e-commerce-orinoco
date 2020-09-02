@@ -15,7 +15,7 @@ fetch("http://localhost:3000/api/furniture/").then(response => {
                     <div class="card m-3 shadow border-0">
                         <img class="card-img-top" src="${item.imageUrl}" alt="${item.name}">
                     <div class="card-body">
-                        <h5 class="card-title">${item.name}</h5>
+                        <h2 class="card-title h5">${item.name}</h2>
                     <div class="d-flex justify-content-between align-items-center">
                       <div class="btn-group">
                         <a href="produit.html?id=${item._id}" type="button" class="btn btn-sm btn-secondary">Voir le produit</a>
