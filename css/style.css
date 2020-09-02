@@ -1,17 +1,4 @@
 @font-face {
-  font-family: "Devonshire-Regular";
-  src: url("../fonts/Devonshire-regular/Devonshire-Regular.ttf.woff") format("woff"), url("../fonts/Devonshire-regular/Devonshire-Regular.ttf.svg#Devonshire-Regular") format("svg"), url("../fonts/Devonshire-regular/Devonshire-Regular.ttf.eot"), url("../fonts/Devonshire-regular/Devonshire-Regular.ttf.eot?#iefix") format("embedded-opentype");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: "braydon_scriptregular";
-  src: url("../fonts/braydon_script-webfont.eot");
-  src: url("../fonts/braydon_script-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/braydon_script-webfont.woff2") format("woff2"), url("../fonts/braydon_script-webfont.woff") format("woff"), url("../fonts/braydon_script-webfont.ttf") format("truetype"), url("../fonts/braydon_script-webfont.svg#braydon_scriptregular") format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
   font-family: "finger_paintregular";
   src: url("../fonts/fingerpaint/fingerpaint-regular-webfont.eot");
   src: url("../fonts/fingerpaint/fingerpaint-regular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/fingerpaint/fingerpaint-regular-webfont.woff2") format("woff2"), url("../fonts/fingerpaint/fingerpaint-regular-webfont.woff") format("woff"), url("../fonts/fingerpaint/fingerpaint-regular-webfont.ttf") format("truetype"), url("../fonts/fingerpaint/fingerpaint-regular-webfont.svg#finger_paintregular") format("svg");
